@@ -1,0 +1,14 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+uid="uid://chfkdhbxbf27y"
+path="res://.godot/imported/basic_cube.map-7a74cd47d671f311f66acf575d92bdcb.tres"
+
+[deps]
+
+source_file="res://tb/basic_cube.map"
+dest_files=["res://.godot/imported/basic_cube.map-7a74cd47d671f311f66acf575d92bdcb.tres"]
+
+[params]
+

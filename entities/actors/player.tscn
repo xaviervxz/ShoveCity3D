@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dckpgpfxs56tt"]
+
+[ext_resource type="PackedScene" uid="uid://uw30dl2uywf3" path="res://entities/raw_objs/wheel.tscn" id="1_ivn1o"]
+[ext_resource type="Script" path="res://entities/actors/player.gd" id="2_720on"]
+[ext_resource type="PackedScene" uid="uid://cxe2ao23m15on" path="res://entities/tools/thruster.tscn" id="3_8mbt0"]
+[ext_resource type="PackedScene" uid="uid://dwa0ujj6h26uq" path="res://entities/tools/full_joint.tscn" id="4_umf8n"]
+
+[node name="Player" instance=ExtResource("1_ivn1o")]
+script = ExtResource("2_720on")
+thrust = 100
+torque = 100
+
+[node name="Thruster" parent="." index="4" instance=ExtResource("3_8mbt0")]
+transform = Transform3D(-0.709523, 0.699164, -0.0880112, 0.693847, 0.714961, 0.0860666, 0.123099, 0, -0.992394, 0.207067, 0.297284, 0.319275)
+
+[node name="FullJoint" parent="." index="5" node_paths=PackedStringArray("target1", "target2") instance=ExtResource("4_umf8n")]
+transform = Transform3D(1, 0, 0, 0, 0.0298232, -0.999555, 0, 0.999555, 0.0298232, 0.204782, 0.303165, 0.1379)
+target1 = NodePath("../Thruster")
+target2 = NodePath("..")

@@ -1,0 +1,14 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+uid="uid://bmvbthe1mpman"
+path="res://.godot/imported/hole_cube.map-805310b4d5ef5c5cd28a61d1f24061db.tres"
+
+[deps]
+
+source_file="res://tb/hole_cube.map"
+dest_files=["res://.godot/imported/hole_cube.map-805310b4d5ef5c5cd28a61d1f24061db.tres"]
+
+[params]
+

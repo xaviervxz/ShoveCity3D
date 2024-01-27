@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://cxe2ao23m15on"]
+
+[ext_resource type="Script" path="res://entities/tools/thruster.gd" id="1_qx02h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ql3oi"]
+albedo_color = Color(0.470588, 0.470588, 0.470588, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1xifk"]
+material = SubResource("StandardMaterial3D_ql3oi")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6m3n"]
+albedo_color = Color(0.52549, 0.278431, 0.0901961, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1kjtu"]
+material = SubResource("StandardMaterial3D_k6m3n")
+top_radius = 0.04
+bottom_radius = 0.1
+height = 0.12
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_er127"]
+albedo_color = Color(0.184314, 0.184314, 0.184314, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xjio2"]
+material = SubResource("StandardMaterial3D_er127")
+top_radius = 0.06
+bottom_radius = 0.16
+height = 0.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jp72e"]
+radius = 0.1
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mu576"]
+albedo_color = Color(0, 0.835294, 0.835294, 1)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_64q3o"]
+material = SubResource("StandardMaterial3D_mu576")
+radius = 0.01
+height = 0.02
+
+[node name="Thruster" type="RigidBody3D"]
+script = ExtResource("1_qx02h")
+
+[node name="Core" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_1xifk")
+
+[node name="Point" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15587, 0)
+mesh = SubResource("CylinderMesh_1kjtu")
+
+[node name="Shield" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.107607, 0)
+mesh = SubResource("CylinderMesh_xjio2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_jp72e")
+
+[node name="Targeting" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("SphereMesh_64q3o")
+skeleton = NodePath("")
