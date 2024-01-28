@@ -8,12 +8,17 @@
 [node name="Player" instance=ExtResource("1_ivn1o")]
 script = ExtResource("2_720on")
 thrust = 100
-torque = 100
+torque = 10
 
-[node name="Thruster" parent="." index="4" instance=ExtResource("3_8mbt0")]
-transform = Transform3D(-0.709523, 0.699164, -0.0880112, 0.693847, 0.714961, 0.0860666, 0.123099, 0, -0.992394, 0.207067, 0.297284, 0.319275)
+[node name="Thruster" parent="." index="3" instance=ExtResource("3_8mbt0")]
+transform = Transform3D(-0.709523, 0.699164, -0.0880112, 0.693847, 0.714961, 0.0860666, 0.123099, 0, -0.992394, 0, 0, 0.410713)
 
-[node name="FullJoint" parent="." index="5" node_paths=PackedStringArray("target1", "target2") instance=ExtResource("4_umf8n")]
-transform = Transform3D(1, 0, 0, 0, 0.0298232, -0.999555, 0, 0.999555, 0.0298232, 0.204782, 0.303165, 0.1379)
+[node name="FullJoint" parent="." index="4" node_paths=PackedStringArray("target1", "target2") instance=ExtResource("4_umf8n")]
+transform = Transform3D(1, 0, 0, 0, 0.0298232, -0.999555, 0, 0.999555, 0.0298232, 0.100233, 0.132685, 0.137434)
+target1 = NodePath("../Thruster")
+target2 = NodePath("..")
+
+[node name="FullJoint2" parent="." index="5" node_paths=PackedStringArray("target1", "target2") instance=ExtResource("4_umf8n")]
+transform = Transform3D(1, 0, 0, 0, 0.0298232, -0.999555, 0, 0.999555, 0.0298232, -0.0813585, -0.14748, 0.137434)
 target1 = NodePath("../Thruster")
 target2 = NodePath("..")

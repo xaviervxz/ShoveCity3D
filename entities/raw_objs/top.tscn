@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://emj3h0cviwq0"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://baq8in4wnvv3x" path="res://entities/raw_objs/gliding_materiel.tres" id="1_ufahb"]
+[ext_resource type="Script" path="res://entities/raw_objs/wheel.gd" id="2_ymq4u"]
+[ext_resource type="Texture2D" uid="uid://cskdjy4m3fhha" path="res://entities/raw_objs/plank.png" id="3_0t2l4"]
+[ext_resource type="Texture2D" uid="uid://dlk3474okiilg" path="res://entities/raw_objs/wheel.png" id="4_dnoht"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bbb40"]
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t65o4"]
+albedo_texture = ExtResource("3_0t2l4")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kksq4"]
+material = SubResource("StandardMaterial3D_t65o4")
+height = 0.1
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vqbom"]
+height = 0.3
+radius = 0.05
+
+[sub_resource type="Gradient" id="Gradient_b38vi"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m0tlw"]
+gradient = SubResource("Gradient_b38vi")
+fill_from = Vector2(0.352632, 0.757895)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anqcw"]
+albedo_color = Color(1, 0.247059, 1, 1)
+albedo_texture = SubResource("GradientTexture2D_m0tlw")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6v56w"]
+material = SubResource("StandardMaterial3D_anqcw")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.3
+
+[node name="Wheel" type="RigidBody3D"]
+physics_material_override = ExtResource("1_ufahb")
+script = ExtResource("2_ymq4u")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_bbb40")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape"]
+mesh = SubResource("CylinderMesh_kksq4")
+skeleton = NodePath("../..")
+
+[node name="Sprite" type="Sprite3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0.05)
+texture = ExtResource("4_dnoht")
+
+[node name="Sprite2" type="Sprite3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, -0.05)
+texture = ExtResource("4_dnoht")
+
+[node name="Axle" type="RigidBody3D" parent="."]
+physics_material_override = ExtResource("1_ufahb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Axle"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.1)
+shape = SubResource("CylinderShape3D_vqbom")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Axle"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.1)
+mesh = SubResource("CylinderMesh_6v56w")
+skeleton = NodePath("../..")
+
+[node name="Left" type="PinJoint3D" parent="Axle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.05)
+node_a = NodePath("../..")
+node_b = NodePath("..")
+
+[node name="Right" type="PinJoint3D" parent="Axle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
+node_a = NodePath("../..")
+node_b = NodePath("..")

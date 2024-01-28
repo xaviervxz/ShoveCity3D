@@ -8,20 +8,22 @@ var secondary_enabled = true
 signal collision(collision)
 
 @export var thrust = 100
-@export var torque = 100
+@export var torque = 10
 
 #@onready var cannonball =  preload("res://entities/projectiles/cannonball/simple_cannonball.tscn")
 #@onready var simpleball =  preload("res://entities/projectiles/flaming_cannonball/flaming_cannonball.tscn")
+
 
 func _physics_process(_delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var y_direction = Input.get_axis("player_forward", "player_backward")
+	var y_direction = Input.get_axis("player_backward","player_forward")
 	var x_direction = Input.get_axis("player_strafe_left", "player_strafe_right")
-	var spin_direction = Input.get_axis("player_spin_left","player_spin_right")
-	var thruster : Thruster = $Thruster
-	thruster.thrust(y_direction)
+	var spin_direction = Input.get_axis("player_spin_right","player_spin_left")
+	if y_direction:
+		for thruster : Thruster in $Engines.get_children():
+			thruster.fire(y_direction)
 	var force = Vector3(0,0,0) * thrust * mass
 	apply_force(force)
 	if spin_direction:

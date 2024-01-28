@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://jxywqm3yss3t"]
+
+[ext_resource type="Script" path="res://entities/tools/engine_flare.gd" id="1_aorbp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hbyha"]
+albedo_color = Color(1, 0.184314, 0.184314, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nhp1u"]
+material = SubResource("StandardMaterial3D_hbyha")
+top_radius = 0.0
+bottom_radius = 0.24
+height = 0.4
+
+[node name="Flame" type="Node3D"]
+script = ExtResource("1_aorbp")
+
+[node name="Flame" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.763233, 0)
+mesh = SubResource("CylinderMesh_nhp1u")
+skeleton = NodePath("../..")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0581565, 0.998307, 0, -0.998307, -0.0581565, 0, -0.334601, 0)
+
+[node name="FlameTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="FlameTimer" to="." method="_on_flame_timer_timeout"]

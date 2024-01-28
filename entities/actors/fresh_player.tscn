@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://creqcllvf2o3g"]
+
+[ext_resource type="Script" path="res://entities/actors/player.gd" id="1_a28yv"]
+[ext_resource type="PhysicsMaterial" uid="uid://baq8in4wnvv3x" path="res://entities/raw_objs/gliding_materiel.tres" id="1_h7bj1"]
+[ext_resource type="PackedScene" uid="uid://cxe2ao23m15on" path="res://entities/tools/thruster.tscn" id="2_t7o23"]
+[ext_resource type="PackedScene" uid="uid://dwa0ujj6h26uq" path="res://entities/tools/full_joint.tscn" id="3_n7yni"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hjvj7"]
+height = 0.2
+radius = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6wrml"]
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.2
+
+[node name="FreshPlayer" type="RigidBody3D"]
+mass = 5.0
+physics_material_override = ExtResource("1_h7bj1")
+script = ExtResource("1_a28yv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_hjvj7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_6wrml")
+
+[node name="Engines" type="Node3D" parent="."]
+
+[node name="Thruster" parent="Engines" instance=ExtResource("2_t7o23")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.454, 0.75)
+
+[node name="FullJoint" parent="Engines/Thruster" node_paths=PackedStringArray("target1", "target2") instance=ExtResource("3_n7yni")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.274426, 0.188325, 0)
+target1 = NodePath("..")
+target2 = NodePath("../../..")
+
+[node name="FullJoint2" parent="Engines/Thruster" node_paths=PackedStringArray("target1", "target2") instance=ExtResource("3_n7yni")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.274146, -0.188, 0)
+target1 = NodePath("..")
+target2 = NodePath("../../..")
+
+[node name="Thruster2" parent="Engines" instance=ExtResource("2_t7o23")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.454, -0.75)
+
+[node name="FullJoint" parent="Engines/Thruster2" node_paths=PackedStringArray("target1", "target2") instance=ExtResource("3_n7yni")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.274426, 0.188325, 0)
+target1 = NodePath("..")
+target2 = NodePath("../../..")
+
+[node name="FullJoint2" parent="Engines/Thruster2" node_paths=PackedStringArray("target1", "target2") instance=ExtResource("3_n7yni")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.274146, -0.188, 0)
+target1 = NodePath("..")
+target2 = NodePath("../../..")
