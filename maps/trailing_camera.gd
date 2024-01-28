@@ -8,14 +8,14 @@ class_name TrailingCamera extends Camera3D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	var source_pos = target.position
-	var cam_pos = position
+	var source_pos = target.global_position
+	var cam_pos = global_position
 	var distance = get_distance_on_plane(source_pos, cam_pos, "xz")
-	var desired_height = source_pos.y + default_camera_height + (max_camera_height-default_camera_height)/distance
-	var cam_height = min(max_camera_height, desired_height)
+	var desired_height = max_camera_height - (max_camera_height-default_camera_height)/distance
+	var cam_height = source_pos.y + max(default_camera_height, min(max_camera_height, desired_height))
 	var source_pos_on_cam_plane = Vector3(source_pos.x, cam_height, source_pos.z)
 	
-	position = position.lerp(source_pos_on_cam_plane, delta * distance * FOLLOW_SPEED)
+	global_position = global_position.lerp(source_pos_on_cam_plane, delta * distance * FOLLOW_SPEED)
 
 # Assume xz plane; that's the standard top-down perspective in Godot
 func get_distance_on_plane(obj1:Vector3, obj2:Vector3, plane:String = "xz"):
