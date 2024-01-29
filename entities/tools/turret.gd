@@ -1,7 +1,8 @@
 class_name Turret extends RigidBody3D
 
 @export var target : Node3D 
-@export var attack_speed = 1
+@export var attack_speed :float = 1
+@export var launch_strength : int = 1000
 
 @onready var cannonball =  preload("res://entities/raw_objs/projectiles/cannon_ball.tscn")
 
@@ -35,8 +36,6 @@ func fire(projectile = cannonball, timer : Timer = $Timer):
 		
 		
 		stage.spawn_projectile(proj)
-		proj.launch(trajectory * 800)
+		proj.launch(trajectory * launch_strength)
 
 
-func _on_timer_timeout():
-	pass # Replace with function body.

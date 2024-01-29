@@ -1,6 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://chhgm1t7bv6nd"]
+[gd_scene load_steps=6 format=3 uid="uid://chhgm1t7bv6nd"]
 
 [ext_resource type="Script" path="res://entities/raw_objs/projectiles/cannon_ball.gd" id="1_sw7nb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ixoua"]
+friction = 0.5
+bounce = 0.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bodhb"]
 radius = 0.2
@@ -16,6 +20,7 @@ radius = 0.2
 height = 0.4
 
 [node name="CannonBall" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_ixoua")
 script = ExtResource("1_sw7nb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

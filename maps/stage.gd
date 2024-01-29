@@ -5,6 +5,9 @@ var projectiles_group = "projectiles"
 var pointers_group = "pointers"
 signal group_changed
 
+func reset_world():
+	get_tree().reload_current_scene()
+
 func spawn_object(obj, group):
 	add_child(obj)
 	move_child(obj, 0)

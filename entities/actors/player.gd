@@ -38,6 +38,8 @@ func _unhandled_input(event):
 		fire_cannon()
 	elif event.is_action_pressed("player_action_secondary"):
 		fire_shooter()
+	elif event.is_action_pressed("world_reset"):
+		get_parent().reset_world()
 		
 		
 func fire_cannon():

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0b456exu1oac"]
+
+[ext_resource type="PackedScene" uid="uid://8hab0pvg6fua" path="res://maps/knockout.tscn" id="1_1f4m2"]
+
+[sub_resource type="Environment" id="Environment_5uhp8"]
+
+[sub_resource type="World3D" id="World3D_vyvq3"]
+environment = SubResource("Environment_5uhp8")
+
+[node name="Gamespace" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="."]
+world_3d = SubResource("World3D_vyvq3")
+
+[node name="Stage" parent="SubViewport" instance=ExtResource("1_1f4m2")]
