@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://chhgm1t7bv6nd"]
+
+[ext_resource type="Script" path="res://entities/raw_objs/projectiles/cannon_ball.gd" id="1_sw7nb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bodhb"]
+radius = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbqph"]
+albedo_color = Color(0.627451, 0.627451, 0.627451, 1)
+metallic = 1.0
+metallic_specular = 0.28
+
+[sub_resource type="SphereMesh" id="SphereMesh_dl14l"]
+material = SubResource("StandardMaterial3D_kbqph")
+radius = 0.2
+height = 0.4
+
+[node name="CannonBall" type="RigidBody3D"]
+script = ExtResource("1_sw7nb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_bodhb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_dl14l")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.01
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

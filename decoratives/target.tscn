@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://lo1bgddrvqyr"]
+
+[ext_resource type="Script" path="res://decoratives/target.gd" id="1_c1lt8"]
+[ext_resource type="Texture2D" uid="uid://dc6uuuxwutovg" path="res://decoratives/marker.png" id="1_gakv6"]
+
+[node name="Target" type="Node3D"]
+script = ExtResource("1_c1lt8")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-8.74228e-08, 2, -8.74228e-08, 0, -8.74228e-08, -2, -2, -8.74228e-08, 3.82137e-15, 0, 0, 0)
+texture = ExtResource("1_gakv6")

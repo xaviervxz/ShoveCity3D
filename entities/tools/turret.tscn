@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://bd80hhbxugcj2"]
+
+[ext_resource type="Script" path="res://entities/tools/turret.gd" id="1_y17cy"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yu3cv"]
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0q8vc"]
+albedo_color = Color(0.117647, 0.309804, 0.678431, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_71uas"]
+material = SubResource("StandardMaterial3D_0q8vc")
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0854g"]
+albedo_color = Color(0.54902, 0.54902, 0.54902, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7q62b"]
+material = SubResource("StandardMaterial3D_0854g")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_wvdl4"]
+radius = 0.2
+height = 0.2
+is_hemisphere = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ge7vo"]
+albedo_color = Color(0.0862745, 0.709804, 0.737255, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_c3e01"]
+material = SubResource("StandardMaterial3D_ge7vo")
+radius = 0.02
+height = 0.04
+
+[node name="Turret" type="RigidBody3D"]
+script = ExtResource("1_y17cy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_yu3cv")
+
+[node name="BaseMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_71uas")
+
+[node name="Barrel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.582123, -0.813101, 0, 0.813101, 0.582123, 0, 0.21254, 0.214131)
+mesh = SubResource("CylinderMesh_7q62b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_wvdl4")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="BarrelTip" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0338141, 0.604214)
+mesh = SubResource("SphereMesh_c3e01")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

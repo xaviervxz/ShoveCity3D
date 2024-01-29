@@ -9,10 +9,11 @@ signal collision(collision)
 
 @export var thrust = 100
 @export var torque = 10
+@export var target : Node3D
 
-#@onready var cannonball =  preload("res://entities/projectiles/cannonball/simple_cannonball.tscn")
 #@onready var simpleball =  preload("res://entities/projectiles/flaming_cannonball/flaming_cannonball.tscn")
-
+func _ready():
+	$Turret.target = target
 
 func _physics_process(_delta):
 
@@ -24,10 +25,12 @@ func _physics_process(_delta):
 	if y_direction:
 		for thruster : Thruster in $Engines.get_children():
 			thruster.fire(y_direction)
-	var force = Vector3(0,0,0) * thrust * mass
-	apply_force(force)
 	if spin_direction:
-		apply_torque(Vector3(0,spin_direction * torque,0))
+		var dir = angular_velocity.y
+		var strength = spin_direction * torque
+		if (dir > 0 and strength < 0) or (dir < 0 and strength > 0):
+			strength = strength * 2
+		apply_torque(Vector3(0,strength,0))
 		
 		
 func _unhandled_input(event):
@@ -38,27 +41,11 @@ func _unhandled_input(event):
 		
 		
 func fire_cannon():
-	print("fire(cannonball, $PrimaryTimer)")
+	$Turret.fire()
 func fire_shooter():
 	print("fire(simpleball, $SecondaryTimer)")
 		
-func fire(projectile, timer):
-	if timer.is_stopped():
-		timer.wait_time = 1 * attack_speed
-		timer.start()
-		var stage = get_parent()
-		if stage is Stage3D:
-			
-			var proj = projectile.instantiate()
-			var angle = -rotation.y +PI 
-			var firing_distance = $BarrelTip.position.length()
-			var trajectory = Vector2(sin(angle), cos(angle))
-			proj.position = position + trajectory * firing_distance
-			proj.rotation = rotation
-			proj.apply_central_impulse(trajectory*1000)
-			
-			stage.spawn_projectile(proj)
-			pass
+
 			
 		
 		
@@ -88,6 +75,7 @@ func on_hit(col: KinematicCollision3D):
 
 
 
-
+func hit(a, b):
+	print("hit")
 
 
