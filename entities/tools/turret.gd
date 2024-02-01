@@ -1,4 +1,4 @@
-class_name Turret extends RigidBody3D
+class_name Turret extends FlatEntity
 
 @export var target : Node3D 
 @export var attack_speed :float = 1

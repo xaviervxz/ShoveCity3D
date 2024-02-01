@@ -33,4 +33,3 @@ func _on_gob_flipped(is_upsidedown, pos):
 	else:
 		print("Goblin Flipped Rightside-Up at (%d,%d,%d)" % [pos.x, pos.y, pos.z])
 
-func play_noise()

@@ -1,8 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://5cibpnwco0ys"]
+[gd_scene load_steps=12 format=3 uid="uid://5cibpnwco0ys"]
 
 [ext_resource type="Script" path="res://entities/actors/enemies/goblins/gobbo.gd" id="1_hloi8"]
-[ext_resource type="Texture2D" uid="uid://by80v602440m0" path="res://entities/actors/enemies/goblins/mania.png" id="2_jx6q0"]
-[ext_resource type="Texture2D" uid="uid://c574oag6ipvtx" path="res://entities/actors/enemies/goblins/downer.png" id="3_m1ntw"]
+[ext_resource type="Texture2D" uid="uid://b6m0cqpw45m05" path="res://entities/actors/enemies/goblins/manic.png" id="2_vn6c8"]
+[ext_resource type="Texture2D" uid="uid://dlm2anbyrmrpo" path="res://entities/actors/enemies/goblins/neutral.png" id="3_sv2lv"]
+[ext_resource type="AudioStream" uid="uid://bkan3kyyjrhex" path="res://entities/actors/enemies/goblins/xtremeAlarm [2024-02-01 145038].wav" id="4_bwe3c"]
+[ext_resource type="AudioStream" uid="uid://cql84w27pub3e" path="res://entities/actors/enemies/goblins/IdleCalm [2024-02-01 145106].wav" id="5_45t75"]
+[ext_resource type="AudioStream" uid="uid://fjlg1d647k56" path="res://entities/actors/enemies/goblins/IdleLong [2024-02-01 140649].wav" id="6_s84kr"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pcvt2"]
+friction = 0.6
+bounce = 0.2
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_67gh6"]
 height = 0.2
@@ -18,6 +25,9 @@ height = 0.2
 radius = 0.1
 
 [node name="Gobbo" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_pcvt2")
+linear_damp = 0.2
+angular_damp = 0.205
 script = ExtResource("1_hloi8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -29,12 +39,12 @@ mesh = SubResource("CylinderMesh_qmbih")
 [node name="Faceup" type="Sprite3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, -1.31134e-08, 0.3, 0, -0.3, -1.31134e-08, 0, 0.12, 0)
 double_sided = false
-texture = ExtResource("2_jx6q0")
+texture = ExtResource("2_vn6c8")
 
 [node name="Facedown" type="Sprite3D" parent="."]
-transform = Transform3D(0.3, 0, 0, 0, -1.31134e-08, -0.3, 0, 0.3, -1.31134e-08, 0, -0.12, 0)
+transform = Transform3D(-0.3, -2.62268e-08, 1.14641e-15, 0, -1.31134e-08, -0.3, 2.62268e-08, -0.3, 1.31134e-08, 0, -0.12, 0)
 double_sided = false
-texture = ExtResource("3_m1ntw")
+texture = ExtResource("3_sv2lv")
 
 [node name="anchor" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.333, 0)
@@ -63,3 +73,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.511722, 0.265908, 0)
 node_a = NodePath("../..")
 node_b = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.265908, 0.484266)
+
+[node name="Alarm" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_bwe3c")
+
+[node name="Idle" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_45t75")
+
+[node name="Idle2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_s84kr")
+
+[node name="NoiseTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="NoiseTimer" to="." method="_on_noise_timer_timeout"]

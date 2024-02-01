@@ -1,4 +1,4 @@
-class_name Thruster extends RigidBody3D
+class_name Thruster extends FlatEntity
 
 @export var force: float = 50
 

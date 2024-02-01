@@ -41,6 +41,7 @@ height = 0.02
 
 [node name="Thruster" type="RigidBody3D"]
 script = ExtResource("1_qx02h")
+flippable = false
 
 [node name="Core" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_xbv44")

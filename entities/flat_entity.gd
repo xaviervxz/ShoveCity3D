@@ -1,18 +1,22 @@
 class_name FlatEntity extends RigidBody3D
 
+
+
 # how often to check if flipped, fallen, or other states
 @export var state_change_check_rate : float = .2
 # the counter for the amount of time passed between state checks
 var curr_check_progress: float = 0
 
 # Statuses: Flipped
+@export var flippable : bool = true
 signal flipped(is_upsidedown, at_position)
 var is_upside_down : bool = false
 
 func _physics_process(delta):
 	curr_check_progress += delta
 	if curr_check_progress > state_change_check_rate:
-		has_flipped()
+		if flippable:
+			has_flipped()
 		curr_check_progress = 0
 	
 
@@ -34,6 +38,7 @@ func has_flipped() -> bool:
 				[ up.x, up.y, up.z, down.x, down.y, down.z,flippedness, minimum_flippedness])
 			is_upside_down = true
 			flipped.emit(is_upside_down, position)
+			cry_alarm()
 			return true
 		else:
 			return false
@@ -43,10 +48,14 @@ func has_flipped() -> bool:
 				[ up.x, up.y, up.z, down.x, down.y, down.z,flippedness, minimum_flippedness])
 			is_upside_down = false
 			flipped.emit(is_upside_down, position)
+			cry_alarm()
 			return true
 		else:
 			return false
 		
+func cry_alarm():
+	var noisemaker : AudioStreamPlayer3D =$Alarm 
+	noisemaker.play()
 	
 		
 		

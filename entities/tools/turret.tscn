@@ -36,6 +36,7 @@ height = 0.04
 
 [node name="Turret" type="RigidBody3D"]
 script = ExtResource("1_y17cy")
+flippable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_yu3cv")
