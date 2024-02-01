@@ -19,9 +19,18 @@ func spawn_object(obj, group):
 
 func spawn_projectile(obj):
 	spawn_object(obj, projectiles_group)
-	obj.dead.connect(_on_projectile_dead)
+	#obj.dead.connect(_on_projectile_dead)
 	
 	
 func _on_projectile_dead():
 	var nodes_in_group = get_tree().get_nodes_in_group(projectiles_group)
 	emit_signal("group_changed", projectiles_group, nodes_in_group.size()-1)
+
+
+func _on_gob_flipped(is_upsidedown, pos):
+	if is_upsidedown:
+		print("Goblin Flipped Upside-Down at (%d,%d,%d)" % [pos.x, pos.y, pos.z])
+	else:
+		print("Goblin Flipped Rightside-Up at (%d,%d,%d)" % [pos.x, pos.y, pos.z])
+
+func play_noise()

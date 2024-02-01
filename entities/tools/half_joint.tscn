@@ -41,35 +41,35 @@ shape = SubResource("CylinderShape3D_ki24o")
 [node name="JointSet2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09, 0)
 
-[node name="0" type="PinJoint3D" parent="JointSet2"]
+[node name="0" type="JoltPinJoint3D" parent="JointSet2"]
+node_a = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, 0, 0)
-node_a = NodePath("../..")
 
-[node name="1" type="PinJoint3D" parent="JointSet2"]
+[node name="1" type="JoltPinJoint3D" parent="JointSet2"]
+node_a = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04, 0, 0)
-node_a = NodePath("../..")
 
-[node name="2" type="PinJoint3D" parent="JointSet2"]
+[node name="2" type="JoltPinJoint3D" parent="JointSet2"]
+node_a = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.04)
-node_a = NodePath("../..")
 
-[node name="3" type="PinJoint3D" parent="JointSet2"]
+[node name="3" type="JoltPinJoint3D" parent="JointSet2"]
+node_a = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.04)
-node_a = NodePath("../..")
 
-[node name="4" type="PinJoint3D" parent="JointSet2"]
+[node name="4" type="JoltPinJoint3D" parent="JointSet2"]
 node_a = NodePath("../..")
 
 [node name="JointSet1" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09, 0)
 
-[node name="0" type="PinJoint3D" parent="JointSet1"]
+[node name="0" type="JoltPinJoint3D" parent="JointSet1"]
+node_a = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+
+[node name="1" type="JoltPinJoint3D" parent="JointSet1"]
 node_a = NodePath("../..")
 
-[node name="1" type="PinJoint3D" parent="JointSet1"]
+[node name="2" type="JoltPinJoint3D" parent="JointSet1"]
 node_a = NodePath("../..")
-
-[node name="2" type="PinJoint3D" parent="JointSet1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
-node_a = NodePath("../..")

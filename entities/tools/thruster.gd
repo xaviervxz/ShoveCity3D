@@ -8,7 +8,7 @@ func fire(scale):
 		thrust(power)
 		$BackFlare.flare()
 	else:
-		thrust(power/10)
+		thrust(power/3)
 		$FrontFlare.flare()
 
 func thrust(power):

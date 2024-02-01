@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://cy1takafc34iu"]
+
+[ext_resource type="Script" path="res://entities/tools/plunger.gd" id="1_8hl74"]
+[ext_resource type="Material" path="res://addons/qodot/textures/orrery/metal.tres" id="1_d2y46"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_72qhy"]
+size = Vector3(1.5, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_83o7n"]
+material = ExtResource("1_d2y46")
+size = Vector3(1.5, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6dfnq"]
+size = Vector3(0.75, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nkby5"]
+material = ExtResource("1_d2y46")
+size = Vector3(0.75, 0.1, 0.1)
+
+[node name="Plunger" type="RigidBody3D"]
+script = ExtResource("1_8hl74")
+
+[node name="Stem" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
+shape = SubResource("BoxShape3D_72qhy")
+
+[node name="Stem" type="MeshInstance3D" parent="Stem"]
+mesh = SubResource("BoxMesh_83o7n")
+skeleton = NodePath("../..")
+
+[node name="Crossbar" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_6dfnq")
+
+[node name="Bar" type="MeshInstance3D" parent="Crossbar"]
+mesh = SubResource("BoxMesh_nkby5")
+skeleton = NodePath("../..")
+
+[node name="Crossbar2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0.25, 0, -0.605)
+shape = SubResource("BoxShape3D_6dfnq")
+
+[node name="Bar" type="MeshInstance3D" parent="Crossbar2"]
+mesh = SubResource("BoxMesh_nkby5")
+skeleton = NodePath("../..")
+
+[node name="Crossbar3" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0.25, 0, 0.605)
+shape = SubResource("BoxShape3D_6dfnq")
+
+[node name="Bar" type="MeshInstance3D" parent="Crossbar3"]
+mesh = SubResource("BoxMesh_nkby5")
+skeleton = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="FrontMarker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

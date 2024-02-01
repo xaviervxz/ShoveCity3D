@@ -2,9 +2,10 @@ class_name Turret extends RigidBody3D
 
 @export var target : Node3D 
 @export var attack_speed :float = 1
-@export var launch_strength : int = 1000
+@export var launch_strength : int = 20
 
 @onready var cannonball =  preload("res://entities/raw_objs/projectiles/cannon_ball.tscn")
+@onready var softball =  preload("res://entities/raw_objs/projectiles/softball.tscn")
 
 func _physics_process(delta):
 	aimAt(target)
@@ -26,7 +27,7 @@ func fire(projectile = cannonball, timer : Timer = $Timer):
 		while not stage is Stage3D:
 			stage = stage.get_parent()
 		
-		var proj : RigidBody3D = projectile.instantiate()
+		var proj : Node3D = projectile.instantiate()
 		proj.global_position = $BarrelTip.global_position
 		var root_pos = global_position
 		var root_loc = position
@@ -36,6 +37,6 @@ func fire(projectile = cannonball, timer : Timer = $Timer):
 		
 		
 		stage.spawn_projectile(proj)
-		proj.launch(trajectory * launch_strength)
+		proj.launch((trajectory * launch_strength) + linear_velocity)
 
 

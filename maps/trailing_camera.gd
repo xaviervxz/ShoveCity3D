@@ -1,8 +1,8 @@
 class_name TrailingCamera extends Camera3D
 
 @export var target : Node3D
-@export var default_camera_height : float = 6
-@export var max_camera_height : float = 10
+@export var default_camera_height : float = 8
+@export var max_camera_height : float = 12
 
 @export var FOLLOW_SPEED : float = .5
 

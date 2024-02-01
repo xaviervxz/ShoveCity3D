@@ -1,32 +1,28 @@
-[gd_scene load_steps=12 format=3 uid="uid://cxe2ao23m15on"]
+[gd_scene load_steps=13 format=3 uid="uid://cxe2ao23m15on"]
 
 [ext_resource type="Script" path="res://entities/tools/thruster.gd" id="1_qx02h"]
+[ext_resource type="Material" uid="uid://bdofuxbqslrg2" path="res://entities/raw_objs/projectiles/lead.tres" id="2_3yfg5"]
 [ext_resource type="Material" uid="uid://ddmlncp3bqqq3" path="res://entities/tools/thruster_material/shade.tres" id="2_sgpnh"]
 [ext_resource type="PackedScene" uid="uid://jxywqm3yss3t" path="res://entities/tools/engine_flare.tscn" id="3_30wyg"]
+[ext_resource type="Material" uid="uid://bbjbwyyamd2go" path="res://entities/tools/head.tres" id="3_65mf5"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ql3oi"]
-albedo_color = Color(0.470588, 0.470588, 0.470588, 1)
+[sub_resource type="BoxMesh" id="BoxMesh_xbv44"]
+material = ExtResource("2_3yfg5")
+size = Vector3(0.4, 0.4, 0.2)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_1xifk"]
-material = SubResource("StandardMaterial3D_ql3oi")
-top_radius = 0.2
-bottom_radius = 0.2
-height = 0.4
+[sub_resource type="PrismMesh" id="PrismMesh_hj3qi"]
+material = ExtResource("3_65mf5")
+left_to_right = 0.0
+size = Vector3(0.2, 0.2, 0.2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6m3n"]
-albedo_color = Color(0.52549, 0.278431, 0.0901961, 1)
+[sub_resource type="PrismMesh" id="PrismMesh_gbkyl"]
+material = ExtResource("3_65mf5")
+left_to_right = 1.0
+size = Vector3(0.2, 0.2, 0.2)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_1kjtu"]
-material = SubResource("StandardMaterial3D_k6m3n")
-top_radius = 0.08
-bottom_radius = 0.2
-height = 0.24
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_xjio2"]
+[sub_resource type="PrismMesh" id="PrismMesh_twpws"]
 material = ExtResource("2_sgpnh")
-top_radius = 0.12
-bottom_radius = 0.32
-height = 0.4
+size = Vector3(0.8, 0.4, 0.19)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jp72e"]
 radius = 0.2
@@ -47,15 +43,19 @@ height = 0.02
 script = ExtResource("1_qx02h")
 
 [node name="Core" type="MeshInstance3D" parent="."]
-mesh = SubResource("CylinderMesh_1xifk")
+mesh = SubResource("BoxMesh_xbv44")
 
-[node name="Point" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, 0)
-mesh = SubResource("CylinderMesh_1kjtu")
+[node name="Point2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.3, 0)
+mesh = SubResource("PrismMesh_hj3qi")
+
+[node name="Point3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.3, 0)
+mesh = SubResource("PrismMesh_gbkyl")
 
 [node name="Shield" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
-mesh = SubResource("CylinderMesh_xjio2")
+mesh = SubResource("PrismMesh_twpws")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_jp72e")

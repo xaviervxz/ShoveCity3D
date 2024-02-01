@@ -1,4 +1,4 @@
-class_name Player extends RigidBody3D
+class_name Player extends FlatEntity
 
 
 var attack_speed : float = .1
@@ -38,6 +38,8 @@ func _unhandled_input(event):
 		fire_cannon()
 	elif event.is_action_pressed("player_action_secondary"):
 		fire_shooter()
+	elif event.is_action_released("player_action_secondary"):
+		unfire_shooter()
 	elif event.is_action_pressed("world_reset"):
 		get_parent().reset_world()
 		
@@ -45,9 +47,14 @@ func _unhandled_input(event):
 func fire_cannon():
 	$Turret.fire()
 func fire_shooter():
-	print("fire(simpleball, $SecondaryTimer)")
-		
+	$Plunger/Pin.enabled = false
+	$Plunger.expand()
+func unfire_shooter():
+	$Plunger.retract()
 
+		
+func _on_plunger_retracted():
+	$Plunger/Pin.enabled=true
 			
 		
 		
@@ -79,5 +86,7 @@ func on_hit(col: KinematicCollision3D):
 
 func hit(a, b):
 	print("hit")
+
+
 
 
