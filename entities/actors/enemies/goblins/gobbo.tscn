@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://5cibpnwco0ys"]
 
 [ext_resource type="Script" path="res://entities/actors/enemies/goblins/gobbo.gd" id="1_hloi8"]
-[ext_resource type="Texture2D" uid="uid://b6m0cqpw45m05" path="res://entities/actors/enemies/goblins/manic.png" id="2_vn6c8"]
-[ext_resource type="Texture2D" uid="uid://dlm2anbyrmrpo" path="res://entities/actors/enemies/goblins/neutral.png" id="3_sv2lv"]
-[ext_resource type="AudioStream" uid="uid://bkan3kyyjrhex" path="res://entities/actors/enemies/goblins/xtremeAlarm [2024-02-01 145038].wav" id="4_bwe3c"]
-[ext_resource type="AudioStream" uid="uid://cql84w27pub3e" path="res://entities/actors/enemies/goblins/IdleCalm [2024-02-01 145106].wav" id="5_45t75"]
-[ext_resource type="AudioStream" uid="uid://fjlg1d647k56" path="res://entities/actors/enemies/goblins/IdleLong [2024-02-01 140649].wav" id="6_s84kr"]
+[ext_resource type="Texture2D" uid="uid://cfi2oh8vcvogi" path="res://entities/actors/enemies/goblins/manic.png" id="2_vn6c8"]
+[ext_resource type="Texture2D" uid="uid://oytese7n6tpy" path="res://entities/actors/enemies/goblins/neutral.png" id="3_sv2lv"]
+[ext_resource type="AudioStream" uid="uid://cbh1glx4yiba" path="res://entities/actors/enemies/goblins/xtremeAlarm [2024-02-01 145038].wav" id="4_bwe3c"]
+[ext_resource type="AudioStream" uid="uid://k5y566guwsk" path="res://entities/actors/enemies/goblins/IdleCalm [2024-02-01 145106].wav" id="5_45t75"]
+[ext_resource type="AudioStream" uid="uid://biovehck2vmbi" path="res://entities/actors/enemies/goblins/IdleLong [2024-02-01 140649].wav" id="6_s84kr"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pcvt2"]
 friction = 0.6
@@ -26,8 +26,8 @@ radius = 0.1
 
 [node name="Gobbo" type="RigidBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_pcvt2")
-linear_damp = 0.2
-angular_damp = 0.205
+linear_damp = 1.0
+angular_damp = 1.0
 script = ExtResource("1_hloi8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
